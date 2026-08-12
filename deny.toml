@@ -1,0 +1,39 @@
+# cargo-deny licence gate for the Python sandbox GUEST (py-guest.wasm).
+#
+# This workspace builds a SEPARATE distributed program — the RustPython
+# interpreter compiled to WASI, executed by wasmtime. It is not code linked
+# into brief-desktop, which is why LGPL is acceptable HERE and refused in
+# the main workspace: the LGPL boundary is the wasm artefact itself.
+#
+# Compliance position for the LGPL-3.0-only crates (malachite, via
+# RustPython's bignum backend): the guest wrapper is published so users can
+# rebuild/replace the guest (LGPL s.4 relink equivalent), and the app's
+# THIRD-PARTY-NOTICES lists the licence with a source pointer. See
+# README.md in this directory.
+
+[licenses]
+allow = [
+  "MIT",
+  "MIT-0",
+  "Apache-2.0",
+  "Apache-2.0 WITH LLVM-exception",
+  "BSD-2-Clause",
+  "BSD-2-Clause-Views",
+  "BSD-3-Clause",
+  "ISC",
+  "Zlib",
+  "BSL-1.0",
+  "Unlicense",
+  "Unicode-3.0",
+  "Unicode-DFS-2016",
+  "CC0-1.0",
+  "0BSD",
+  "PSF-2.0",
+  # CPython standard-library licence (rustpython-pylib vendors the stdlib).
+  "Python-2.0.1",
+  "bzip2-1.0.6",
+  # The contained copyleft exception this workspace exists to hold.
+  "LGPL-3.0-only",
+  "LGPL-2.1-or-later",
+]
+private = { ignore = true }

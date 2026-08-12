@@ -1,0 +1,6 @@
+# Pinned so the published brief-py-guest repo reproduces the shipped
+# py-guest.wasm byte-for-byte (Rust codegen varies across compiler
+# versions; the CI integrity hash depends on this pin).
+[toolchain]
+channel = "1.96.0"
+targets = ["wasm32-wasip1"]

@@ -1,0 +1,22 @@
+# Standalone (NOT a workspace member): compiles only to wasm32-wasip1.
+# Rebuild the bundled guest with: crates/py-guest/build.sh
+[package]
+name = "py-guest"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "py-guest"
+path = "src/main.rs"
+
+[dependencies]
+rustpython-vm = { version = "0.5", default-features = false, features = ["freeze-stdlib", "compiler"] }
+rustpython-stdlib = { version = "0.5", default-features = false }
+rustpython-pylib = { version = "0.5", features = ["freeze-stdlib"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
+panic = "abort"
